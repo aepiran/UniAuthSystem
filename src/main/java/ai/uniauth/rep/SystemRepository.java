@@ -1,6 +1,8 @@
 package ai.uniauth.rep;
 
 import ai.uniauth.model.entity.UniSystem;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,7 +24,7 @@ public interface SystemRepository extends JpaRepository<UniSystem, Long> {
 
     boolean existsByApiKey(String apiKey);
 
-    List<UniSystem> findByIsActive(Boolean isActive);
+    Page<UniSystem> findByIsActive(Boolean isActive, Pageable pageable);
 
     @Query("SELECT s FROM UniSystem s WHERE s.systemCode IN :systemCodes")
     List<UniSystem> findBySystemCodes(@Param("systemCodes") Set<String> systemCodes);
