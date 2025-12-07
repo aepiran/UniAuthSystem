@@ -27,7 +27,7 @@ public interface SystemRepository extends JpaRepository<UniSystem, Long> {
     Page<UniSystem> findByIsActive(Boolean isActive, Pageable pageable);
 
     @Query("SELECT s FROM UniSystem s WHERE s.systemCode IN :systemCodes")
-    List<UniSystem> findBySystemCodes(@Param("systemCodes") Set<String> systemCodes);
+    Set<UniSystem> findBySystemCodes(@Param("systemCodes") Set<String> systemCodes);
 
     @Query("SELECT s FROM UniSystem s WHERE s.systemName LIKE %:keyword% OR s.systemCode LIKE %:keyword%")
     List<UniSystem> searchByKeyword(@Param("keyword") String keyword);
