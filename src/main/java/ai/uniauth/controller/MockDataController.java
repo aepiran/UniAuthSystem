@@ -22,7 +22,7 @@ public class MockDataController {
 
     @PostMapping("/generate")
     @Operation(summary = "Generate basic test data with demo system")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, Object>> generateTestData() {
         Map<String, Object> result = mockDataService.generateTestData();
         return ResponseEntity.ok(result);
@@ -30,7 +30,7 @@ public class MockDataController {
 
     @PostMapping("/generate-system")
     @Operation(summary = "Generate a new system with sample data")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, Object>> generateSystem(
             @RequestParam String systemCode,
             @RequestParam String systemName) {
@@ -40,7 +40,7 @@ public class MockDataController {
 
     @PostMapping("/generate-large")
     @Operation(summary = "Generate large dataset for performance testing")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, Object>> generateLargeDataSet(
             @RequestParam(defaultValue = "1000") int users,
             @RequestParam(defaultValue = "50") int roles,
@@ -59,7 +59,7 @@ public class MockDataController {
 
     @DeleteMapping("/cleanup")
     @Operation(summary = "Clean up all test data (TEST_, LARGE_, DEMO systems)")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, Object>> cleanupTestData() {
         Map<String, Object> result = mockDataService.cleanupTestData();
         return ResponseEntity.ok(result);
@@ -67,7 +67,7 @@ public class MockDataController {
 
     @GetMapping("/statistics")
     @Operation(summary = "Get current data statistics")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, Object>> getMockDataStatistics() {
         Map<String, Object> stats = mockDataService.getMockDataStatistics();
         return ResponseEntity.ok(stats);
@@ -75,7 +75,7 @@ public class MockDataController {
 
     @GetMapping("/credentials")
     @Operation(summary = "Get sample user credentials for testing")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, String>> getSampleCredentials() {
         Map<String, String> credentials = mockDataService.getSampleCredentials();
         return ResponseEntity.ok(credentials);
@@ -83,7 +83,7 @@ public class MockDataController {
 
     @PostMapping("/reset-demo")
     @Operation(summary = "Reset demo data to initial state")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, Object>> resetDemoData() {
         Map<String, Object> result = mockDataService.resetDemoData();
         return ResponseEntity.ok(result);
@@ -91,7 +91,7 @@ public class MockDataController {
 
     @GetMapping("/system/{systemCode}/summary")
     @Operation(summary = "Get summary of a specific system")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, Object>> getSystemSummary(
             @Parameter(description = "System code") @PathVariable String systemCode) {
         Map<String, Object> summary = mockDataService.getSystemSummary(systemCode);

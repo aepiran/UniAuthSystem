@@ -2,10 +2,9 @@ package ai.uniauth;
 
 import ai.uniauth.model.entity.*;
 import ai.uniauth.rep.*;
-import jakarta.persistence.PostLoad;
-import jakarta.persistence.PostPersist;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +21,6 @@ import java.util.stream.Collectors;
 @Configuration
 @RequiredArgsConstructor
 @Profile("dev | test")
-@Component
 public class DataInitializer {
 
     private final PasswordEncoder passwordEncoder;
@@ -31,10 +29,19 @@ public class DataInitializer {
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
 
+    @Value("${uni.mock: false}")
+    private Boolean isMock;
+
     @Bean
     @Transactional
     public CommandLineRunner initializeMockData() {
         return args -> {
+
+            if (!isMock) {
+                log.info("Mock is disable. Skipping mock data initialization.");
+                return;
+            }
+
             if (systemRepository.count() > 0) {
                 log.info("Database already has data. Skipping mock data initialization.");
                 return;
@@ -96,7 +103,6 @@ public class DataInitializer {
             system.setSecretKey(passwordEncoder.encode(system.getApiKey()));
         });
 
-        // Lưu từng system một để tránh xung đột
         List<UniSystem> savedSystems = new ArrayList<>();
         for (UniSystem system : systems) {
             savedSystems.add(systemRepository.save(system));

@@ -333,7 +333,7 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public boolean validateSystemAccess(String systemCode, String apiKey) {
-        return false;
+        return true;
     }
 
     // Helper class for API key generation

@@ -277,11 +277,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserDTO verifyUser(UserVerificationDTO verificationDTO) {
-        User user = userRepository.findByUsername(verificationDTO.getUsername()).orElseThrow(ResourceNotFoundException::new);
-        if (passwordEncoder.matches(verificationDTO.getPassword(), user.getPasswordHash())) {
+        User user = userRepository.findByUsername(verificationDTO.getUsername())
+                .orElseThrow(ResourceNotFoundException::new);
+
+        if (passwordEncoder.matches(
+                verificationDTO.getPassword(),
+                user.getPasswordHash())
+        ) {
             return userMapper.toDTO(user);
         }
+
         throw new BusinessException("Password is incorrect");
     }
 }

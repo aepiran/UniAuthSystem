@@ -60,6 +60,19 @@ public class WebConfig {
                 .securityMatcher("/api/v1/integration/**")
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                "/api/v1/integration/**",
+                                "/api/v1/mock-data/**",
+                                "/api/auth/**",
+                                "/oauth2/**",
+                                "/oauth2d/**"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(apiKeyFilter(), BasicAuthenticationFilter.class);
@@ -87,6 +100,7 @@ public class WebConfig {
                         ).permitAll()
 
                         .requestMatchers(
+                                "/api/v1/mock-data/**",
                                 "/api/auth/**",
                                 "/oauth2/**",
                                 "/oauth2d/**"

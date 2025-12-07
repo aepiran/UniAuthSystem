@@ -18,9 +18,9 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 
     @Override
     public boolean hasPermission(Authentication auth, Object targetDomainObject, Object permission) {
-        if (auth == null || permission == null) {
-            return false;
-        }
+//        if (auth == null || permission == null) {
+//            return false;
+//        }
 
 //        String perm = permission.toString();
 //        Set<String> userPerms = userService.getUserPermissions((UUID) auth.getPrincipal());

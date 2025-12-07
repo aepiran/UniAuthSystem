@@ -358,8 +358,8 @@ public class MockDataService {
         List<User> demoUsers = userRepository.findAll().stream()
                 .filter(u -> u.getUsername().contains("admin") ||
                         u.getUsername().contains("demo") ||
-                        u.getUsername().equals("john.doe") ||
-                        u.getUsername().equals("jane.smith"))
+                        u.getUsername().equals("john_doe") ||
+                        u.getUsername().equals("jane_smith"))
                 .limit(10)
                 .collect(Collectors.toList());
 
@@ -371,7 +371,7 @@ public class MockDataService {
         if (credentials.isEmpty()) {
             credentials.put("admin", "QAZxsw123!");
             credentials.put("superadmin", "QAZxsw123!");
-            credentials.put("demo.user", "QAZxsw123!");
+            credentials.put("demo_user", "QAZxsw123!");
         }
 
         return credentials;
@@ -490,26 +490,26 @@ public class MockDataService {
         Map<String, String> userData = Map.of(
                 "admin", "System Administrator",
                 "manager", "Department Manager",
-                "john.doe", "John Doe",
-                "jane.smith", "Jane Smith",
-                "demo.user", "Demo User",
-                "view.only", "View Only User"
+                "john_doe", "John Doe",
+                "jane_smith", "Jane Smith",
+                "demo_user", "Demo User",
+                "view_only", "View Only User"
         );
 
         Map<String, String> roleMapping = Map.of(
                 "admin", "ADMIN",
                 "manager", "MANAGER",
-                "john.doe", "USER",
-                "jane.smith", "USER",
-                "demo.user", "USER",
-                "view.only", "VIEWER"
+                "john_doe", "USER",
+                "jane_smith", "USER",
+                "demo_user", "USER",
+                "view_only", "VIEWER"
         );
 
         for (Map.Entry<String, String> entry : userData.entrySet()) {
             User user = new User();
             user.setUsername(entry.getKey());
             user.setEmail(entry.getKey().replace(".", "") + "@demo.company.com");
-            user.setPasswordHash(passwordEncoder.encode("Password123!"));
+            user.setPasswordHash(passwordEncoder.encode("QAZxsw123!"));
             user.setFullName(entry.getValue());
             user.setPhone("+84123456789");
             user.setAvatarUrl("https://ui-avatars.com/api/?name=" + entry.getValue().replace(" ", "+"));
@@ -539,11 +539,11 @@ public class MockDataService {
 
     private Map<String, String> createDemoCredentials() {
         return Map.of(
-                "admin", "Password123!",
-                "manager", "Password123!",
-                "john.doe", "Password123!",
-                "jane.smith", "Password123!",
-                "demo.user", "Password123!"
+                "admin", "QAZxsw123!",
+                "manager", "QAZxsw123!",
+                "john_doe", "QAZxsw123!",
+                "jane_smith", "QAZxsw123!",
+                "demo_user", "QAZxsw123!"
         );
     }
 
@@ -649,7 +649,7 @@ public class MockDataService {
             User user = new User();
             user.setUsername(profile[0]);
             user.setEmail(profile[0] + "@" + system.getSystemCode().toLowerCase() + ".company.com");
-            user.setPasswordHash(passwordEncoder.encode("Pass@123"));
+            user.setPasswordHash(passwordEncoder.encode("QAZxsw123!"));
             user.setFullName(profile[1]);
             user.setPhone("+8498" + String.format("%07d", random.nextInt(10000000)));
             user.setAvatarUrl("https://ui-avatars.com/api/?name=" + profile[1].replace(" ", "+"));
