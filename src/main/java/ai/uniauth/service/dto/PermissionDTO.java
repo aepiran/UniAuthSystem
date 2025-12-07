@@ -11,7 +11,7 @@ public class PermissionDTO {
     private String code;
     private String name;
     private String description;
-    private UUID systemId;
+    private UUID uniSystemId;
     private String systemCode;
     private String category;
     private String subcategory;

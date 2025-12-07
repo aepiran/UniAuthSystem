@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Data
-public class SystemDTO {
+public class UniSystemDTO {
     private UUID id;
     private String name;
     private String code;

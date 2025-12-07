@@ -13,7 +13,7 @@ public interface PermissionMapper {
     PermissionDTO toDTO(Permission permission);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "system", ignore = true)
+    @Mapping(target = "uniSystem", ignore = true)
     @Mapping(target = "rolePermissions", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)

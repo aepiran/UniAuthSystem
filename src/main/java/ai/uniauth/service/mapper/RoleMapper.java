@@ -14,7 +14,7 @@ public interface RoleMapper {
     RoleDTO toDTO(Role role);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "system", ignore = true)
+    @Mapping(target = "uniSystem", ignore = true)
     @Mapping(target = "parent", ignore = true)
     @Mapping(target = "children", ignore = true)
     @Mapping(target = "users", ignore = true)

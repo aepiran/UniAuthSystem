@@ -5,7 +5,7 @@ import ai.uniauth.models.enums.ActionType;
 import ai.uniauth.models.enums.UserStatus;
 import ai.uniauth.rep.*;
 import ai.uniauth.service.UserService;
-import ai.uniauth.service.mapper.UserMapper;
+import ai.uniauth.service.mapper.UniSystemMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     private final UserSessionRep userSessionRep;
     private final LoginAttemptRep loginAttemptRep;
     private final PasswordResetRep passwordResetRep;
-    private final UserMapper userMapper;
+    private final UniSystemMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
     @Override

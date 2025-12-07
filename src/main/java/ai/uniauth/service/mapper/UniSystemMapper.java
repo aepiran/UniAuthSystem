@@ -1,19 +1,19 @@
 package ai.uniauth.service.mapper;
 
 import ai.uniauth.models.UniSystem;
-import ai.uniauth.service.dto.SystemDTO;
+import ai.uniauth.service.dto.UniSystemDTO;
 import ai.uniauth.service.dto.request.CreateSystemRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface SystemMapper {
+public interface UniSystemMapper {
 
     @Mapping(target = "userCount", ignore = true)
     @Mapping(target = "roleCount", ignore = true)
     @Mapping(target = "permissionCount", ignore = true)
-    @Mapping(target = "isHealthy", ignore = true)
-    SystemDTO toDTO(UniSystem system);
+//    @Mapping(target = "isHealthy", ignore = true)
+    UniSystemDTO toDTO(UniSystem system);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "isActive", constant = "true")
