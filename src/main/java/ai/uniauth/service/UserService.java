@@ -46,4 +46,5 @@ public interface UserService {
     void deactivateUser(Long userId);
     void lockUser(Long userId);
     void unlockUser(Long userId);
+    Page<UserDTO> searchUsersWithCriteria(UserSearchCriteriaDTO criteria, Pageable pageable);
 }

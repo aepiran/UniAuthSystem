@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -30,3 +31,4 @@ public class RoleCreateDTO {
     @NotNull(message = "Permission IDs are required")
     private Set<Long> permissionIds;
 }
+
