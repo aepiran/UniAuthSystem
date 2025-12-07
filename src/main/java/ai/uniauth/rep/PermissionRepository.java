@@ -1,7 +1,10 @@
 package ai.uniauth.rep;
 
 import ai.uniauth.model.entity.Permission;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -11,7 +14,8 @@ import java.util.Optional;
 import java.util.Set;
 
 @Repository
-public interface PermissionRepository extends JpaRepository<Permission, Long> {
+public interface PermissionRepository extends JpaRepository<Permission, Long>,
+        JpaSpecificationExecutor<Permission> {
 
     Optional<Permission> findByPermissionCode(String permissionCode);
 
@@ -20,11 +24,14 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
     List<Permission> findBySystemId(Long systemId);
 
     @Query("SELECT p FROM Permission p WHERE p.system.systemCode = :systemCode")
+    Page<Permission> findBySystemCode(@Param("systemCode") String systemCode, Pageable pageable);
+
+    @Query("SELECT p FROM Permission p WHERE p.system.systemCode = :systemCode")
     List<Permission> findBySystemCode(@Param("systemCode") String systemCode);
 
     @Query("SELECT p FROM Permission p WHERE p.system.systemCode = :systemCode AND p.resourceType = :resourceType")
-    List<Permission> findBySystemAndResourceType(@Param("systemCode") String systemCode,
-                                                 @Param("resourceType") String resourceType);
+    Page<Permission> findBySystemAndResourceType(@Param("systemCode") String systemCode,
+                                                 @Param("resourceType") String resourceType, Pageable pageable);
 
     @Query("SELECT p FROM Permission p JOIN p.roles r WHERE r.id = :roleId")
     List<Permission> findByRoleId(@Param("roleId") Long roleId);
