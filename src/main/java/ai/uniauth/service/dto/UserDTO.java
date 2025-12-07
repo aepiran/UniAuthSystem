@@ -1,4 +1,4 @@
-package ai.uniauth.dto;
+package ai.uniauth.service.dto;
 
 import ai.uniauth.models.enums.UserStatus;
 import lombok.Data;

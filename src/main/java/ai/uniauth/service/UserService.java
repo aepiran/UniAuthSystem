@@ -67,12 +67,6 @@ public interface UserService extends UserDetailsService {
     boolean hasAnyPermission(UUID userId, Set<String> permissionCodes);
     boolean hasAllPermissions(UUID userId, Set<String> permissionCodes);
 
-    // Session Management
-    void terminateAllSessions(UUID userId, String reason);
-    void terminateSession(String sessionId, String reason);
-    List<User> getUsersWithActiveSessions();
-    long countActiveSessions(UUID userId);
-
     // Search and Filter
     Page<User> searchUsers(String keyword, Pageable pageable);
     Page<User> filterUsers(Map<String, Object> filters, Pageable pageable);

@@ -1,4 +1,4 @@
-package ai.uniauth.dto.request;
+package ai.uniauth.service.dto.request;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
