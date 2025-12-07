@@ -275,4 +275,13 @@ public class UserServiceImpl implements UserService {
     public Page<UserDTO> searchUsersWithCriteria(UserSearchCriteriaDTO criteria, Pageable pageable) {
         return null;
     }
+
+    @Override
+    public UserDTO verifyUser(UserVerificationDTO verificationDTO) {
+        User user = userRepository.findByUsername(verificationDTO.getUsername()).orElseThrow(ResourceNotFoundException::new);
+        if (passwordEncoder.matches(verificationDTO.getPassword(), user.getPasswordHash())) {
+            return userMapper.toDTO(user);
+        }
+        throw new BusinessException("Password is incorrect");
+    }
 }
