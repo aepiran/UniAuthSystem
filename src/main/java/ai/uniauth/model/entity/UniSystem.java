@@ -58,6 +58,6 @@ public class UniSystem {
     @OneToMany(mappedBy = "system", cascade = CascadeType.ALL)
     private Set<Permission> permissions = new HashSet<>();
 
-//    @OneToMany(mappedBy = "system", cascade = CascadeType.ALL)
-//    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "systems")
+    private Set<User> users = new HashSet<>();
 }

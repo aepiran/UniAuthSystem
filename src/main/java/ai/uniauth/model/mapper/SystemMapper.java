@@ -24,7 +24,7 @@ public interface SystemMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "permissions", ignore = true)
-//    @Mapping(target = "users", ignore = true)
+    @Mapping(target = "users", ignore = true)
     UniSystem toEntity(SystemCreateDTO dto);
 
     @Mapping(target = "id", ignore = true)
@@ -35,7 +35,7 @@ public interface SystemMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "permissions", ignore = true)
-//    @Mapping(target = "users", ignore = true)
+    @Mapping(target = "users", ignore = true)
     void updateEntity(SystemUpdateDTO dto, @MappingTarget UniSystem system);
 
     // Custom mapping methods
@@ -66,17 +66,17 @@ public interface SystemMapper {
                     .collect(Collectors.toSet()));
         }
 
-//        if (system.getUsers() != null) {
-//            dto.setUserCount(system.getUsers().size());
-//            dto.setUsers(system.getUsers().stream()
-//                    .map(user -> new SimpleUserDTO(
-//                            user.getId(),
-//                            user.getUsername(),
-//                            user.getEmail(),
-//                            user.getFullName()
-//                    ))
-//                    .collect(Collectors.toSet()));
-//        }
+        if (system.getUsers() != null) {
+            dto.setUserCount(system.getUsers().size());
+            dto.setUsers(system.getUsers().stream()
+                    .map(user -> new SimpleUserDTO(
+                            user.getId(),
+                            user.getUsername(),
+                            user.getEmail(),
+                            user.getFullName()
+                    ))
+                    .collect(Collectors.toSet()));
+        }
 
         // Mask API key for security
         if (dto.getApiKey() != null && dto.getApiKey().length() > 8) {
