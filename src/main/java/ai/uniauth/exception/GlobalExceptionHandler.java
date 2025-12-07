@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.Instant;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Custom Access Denied 403
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ApiResponse> handleAccessDeniedException(AccessDeniedException ex,
-                                                                   HttpServletRequest request,
-                                                                   Authentication auth) {
-
-        String username = auth != null && auth.getName() != null ? auth.getName() : "anonymous";
-
-        ApiResponse response = ApiResponse.builder()
-                .success(false)
-                .code("ACCESS_DENIED")
-                .message("Bạn không có quyền truy cập tài nguyên này")
-                .detail("User '" + username + "' attempted to access: " + request.getRequestURI())
-                .timestamp(Instant.now())
-                .build();
-
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
-    }
-
-    // Optional: custom 401 khi chưa login
-    @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<ApiResponse> handleAuthenticationException(AuthenticationException ex) {
-        ApiResponse response = ApiResponse.builder()
-                .success(false)
-                .code("UNAUTHENTICATED")
-                .message("Vui lòng đăng nhập")
-                .timestamp(Instant.now())
-                .build();
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-    }
+//    // Custom Access Denied 403
+//    @ExceptionHandler(AccessDeniedException.class)
+//    public ResponseEntity<ApiResponse> handleAccessDeniedException(AccessDeniedException ex,
+//                                                                   HttpServletRequest request,
+//                                                                   Authentication auth) {
+//
+//        String username = auth != null && auth.getName() != null ? auth.getName() : "anonymous";
+//
+//        ApiResponse response = ApiResponse.builder()
+//                .success(false)
+//                .code("ACCESS_DENIED")
+//                .message("Bạn không có quyền truy cập tài nguyên này")
+//                .detail("User '" + username + "' attempted to access: " + request.getRequestURI())
+//                .timestamp(Instant.now())
+//                .build();
+//
+//        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+//    }
+//
+//    // Optional: custom 401 khi chưa login
+//    @ExceptionHandler(AuthenticationException.class)
+//    public ResponseEntity<ApiResponse> handleAuthenticationException(AuthenticationException ex) {
+//        ApiResponse response = ApiResponse.builder()
+//                .success(false)
+//                .code("UNAUTHENTICATED")
+//                .message("Vui lòng đăng nhập")
+//                .timestamp(Instant.now())
+//                .build();
+//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+//    }
 }

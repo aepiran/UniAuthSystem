@@ -270,4 +270,9 @@ public class UserServiceImpl implements UserService {
     public void unlockUser(Long userId) {
 
     }
+
+    @Override
+    public Page<UserDTO> searchUsersWithCriteria(UserSearchCriteriaDTO criteria, Pageable pageable) {
+        return null;
+    }
 }
