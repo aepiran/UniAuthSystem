@@ -67,7 +67,7 @@ public class WebConfig {
         return http.build();
     }
 
-    @Bean
+//    @Bean
     public ApiKeyAuthenticationFilter apiKeyFilter() {
         return new ApiKeyAuthenticationFilter(systemRepository);
     }
@@ -134,7 +134,6 @@ public class WebConfig {
     }
 }
 
-@Component
 @RequiredArgsConstructor
 class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
 
